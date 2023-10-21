@@ -1,0 +1,110 @@
+
+<html lang="en">
+<head>
+
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #85ff50;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .input-container {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #000000;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #000000;
+            color: #27b8c2;
+            border:rgb(192, 190, 218);
+            cursor: pointer;
+    
+        }
+        div{
+            background-color: azure;
+        }
+        h1{
+            color:brown;
+            behavior: initial;
+            font: optional;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-style: unset;
+            font-feature-settings: "c2sc";
+
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 5px;
+        }
+
+        li button {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="input-container">
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button onclick="addTask()">Add</button>
+        </div>
+        <ul id="taskList">
+            <!-- Tasks will be added here -->
+        </ul>
+    </div>
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                const taskList = document.getElementById("taskList");
+                const newTask = document.createElement("li");
+                newTask.innerHTML = `
+                    ${taskText}
+                    <button onclick="removeTask(this)">Delete</button>
+                `;
+                taskList.appendChild(newTask);
+                taskInput.value = "";
+            }
+        }
+
+        function removeTask(button) {
+            const taskList = document.getElementById("taskList");
+            const taskItem = button.parentNode;
+            taskList.removeChild(taskItem);
+        }
+    </script>
+</body>
+</html>
